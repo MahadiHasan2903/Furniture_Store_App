@@ -8,6 +8,8 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const cloudinary = require("cloudinary");
 const productRouter = require("./routes/product.router");
+const authRouter = require("./routes/auth.route");
+const userRouter = require("./routes/user.router");
 
 dotenv.config();
 
@@ -40,7 +42,7 @@ app.get("/", (req, res) => {
   res.send("Hello world from backend server!");
 });
 
-app.use("/api/v1", productRouter);
+app.use("/api/v1", productRouter, authRouter, userRouter);
 
 // Server
 const port = process.env.PORT || 8080;
