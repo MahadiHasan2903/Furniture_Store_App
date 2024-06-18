@@ -9,8 +9,8 @@ import { ProductsRow } from "@/components/products";
 
 const Home = () => {
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <ScrollView>
+      <SafeAreaView>
         <View style={styles.appBarWrapper}>
           <View style={styles.appBar}>
             <Ionicons name="location-outline" size={24} />
@@ -33,8 +33,8 @@ const Home = () => {
         <Carousel />
         <Heading />
         <ProductsRow />
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 

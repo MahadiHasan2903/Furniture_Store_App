@@ -9,8 +9,8 @@ import { ProductList } from "@/components/products";
 
 const NewArrivals = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
         <View style={styles.wrapper}>
           <View style={styles.upperRow}>
             <TouchableOpacity onPress={() => router.push("/home")}>
@@ -24,8 +24,8 @@ const NewArrivals = () => {
           </View>
           <ProductList />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 

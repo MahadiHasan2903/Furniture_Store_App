@@ -43,8 +43,8 @@ const ProductDetails = () => {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.lightWhite }}>
-      <ScrollView>
+    <ScrollView>
+      <SafeAreaView style={{ backgroundColor: COLORS.lightWhite }}>
         <View style={styles.container}>
           {/* Upper row with back button and favorite button */}
           <View style={styles.upperRow}>
@@ -132,8 +132,8 @@ const ProductDetails = () => {
             </View>
           </View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
