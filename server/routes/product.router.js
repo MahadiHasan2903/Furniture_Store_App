@@ -1,6 +1,11 @@
 const express = require("express");
 
 const {
+  isAuthenticated,
+  authorizeRoles,
+} = require("../middleware/authMiddleware");
+
+const {
   createProductController,
   updateProductController,
   deleteProductController,
@@ -11,11 +16,34 @@ const {
 
 const productRouter = express.Router();
 
-productRouter.post("/create-product", createProductController);
-productRouter.put("/update-product/:id", updateProductController);
-productRouter.delete("/delete-product/:id", deleteProductController);
-productRouter.get("/get-product/:id", getSingleProductController);
-productRouter.get("/get-products", getAllProductsController);
-productRouter.get("/search-product/:key", searchProductController);
+productRouter.post(
+  "/create-product",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  createProductController
+);
+productRouter.put(
+  "/update-product/:id",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  updateProductController
+);
+productRouter.delete(
+  "/delete-product/:id",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  deleteProductController
+);
+productRouter.get(
+  "/get-product/:id",
+  isAuthenticated,
+  getSingleProductController
+);
+productRouter.get("/get-products", isAuthenticated, getAllProductsController);
+productRouter.get(
+  "/search-product/:key",
+  isAuthenticated,
+  searchProductController
+);
 
 module.exports = productRouter;

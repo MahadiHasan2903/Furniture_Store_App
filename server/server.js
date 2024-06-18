@@ -10,6 +10,8 @@ const cloudinary = require("cloudinary");
 const productRouter = require("./routes/product.router");
 const authRouter = require("./routes/auth.route");
 const userRouter = require("./routes/user.router");
+const cartRouter = require("./routes/cart.route");
+const orderRouter = require("./routes/order.router");
 
 dotenv.config();
 
@@ -42,7 +44,14 @@ app.get("/", (req, res) => {
   res.send("Hello world from backend server!");
 });
 
-app.use("/api/v1", productRouter, authRouter, userRouter);
+app.use(
+  "/api/v1",
+  productRouter,
+  authRouter,
+  userRouter,
+  cartRouter,
+  orderRouter
+);
 
 // Server
 const port = process.env.PORT || 8080;
