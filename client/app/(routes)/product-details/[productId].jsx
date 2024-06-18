@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "@/styles/Products/productDetails.style";
 import {
@@ -30,7 +30,6 @@ const ProductDetails = () => {
     fetchProductDetails();
   }, []);
 
-  console.log("Item:", item);
   const [count, setCount] = useState(1);
 
   const handleIncrementCount = () => {
@@ -44,94 +43,96 @@ const ProductDetails = () => {
   };
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        {/* Upper row with back button and favorite button */}
-        <View style={styles.upperRow}>
-          <TouchableOpacity onPress={() => router.back()}>
-            <Ionicons name="chevron-back-circle" size={30} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <Ionicons name="heart" size={30} color={COLORS.primary} />
-          </TouchableOpacity>
-        </View>
-
-        {/* Image section */}
-        <Image source={product?.image?.url} style={styles.image} />
-
-        {/* Product details */}
-        <View style={styles.details}>
-          {/* Title and price row */}
-          <View style={styles.titleRow}>
-            <Text style={styles.title}>{item.title}</Text>
-            <View style={styles.priceWrapper}>
-              <Text style={styles.price}>$ {item.price}</Text>
-            </View>
+    <SafeAreaView style={{ backgroundColor: COLORS.lightWhite }}>
+      <ScrollView>
+        <View style={styles.container}>
+          {/* Upper row with back button and favorite button */}
+          <View style={styles.upperRow}>
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="chevron-back-circle" size={30} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}}>
+              <Ionicons name="heart" size={30} color={COLORS.primary} />
+            </TouchableOpacity>
           </View>
 
-          {/* Ratings and quantity row */}
-          <View
-            style={{
-              ...styles.ratingRow,
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <View style={styles.rating}>
-              {[1, 2, 3, 4, 5].map((index) => (
-                <Ionicons key={index} name="star" size={24} color="gold" />
-              ))}
-              <Text style={styles.ratingText}>(4.9)</Text>
-            </View>
-            <View style={styles.rating}>
-              <TouchableOpacity onPress={handleIncrementCount}>
-                <SimpleLineIcons name="plus" size={20} />
-              </TouchableOpacity>
-              <Text style={styles.ratingText}>{count}</Text>
-              <TouchableOpacity onPress={handleDecrementCount}>
-                <SimpleLineIcons name="minus" size={20} />
-              </TouchableOpacity>
-            </View>
-          </View>
+          {/* Image section */}
+          <Image source={{ uri: product?.image?.url }} style={styles.image} />
 
-          {/* Description */}
-          <View style={styles.descriptionWrapper}>
-            <Text style={styles.description}>Description</Text>
-            <Text style={styles.descriptionText}>{item.description}</Text>
-          </View>
-
-          {/* Location and delivery */}
-          <View style={{ marginBottom: SIZES.small }}>
-            <View style={styles.location}>
-              <View style={{ flexDirection: "row" }}>
-                <Ionicons name="location-outline" size={20} />
-                <Text style={{ paddingHorizontal: 5 }}>Dhaka</Text>
+          {/* Product details */}
+          <View style={styles.details}>
+            {/* Title and price row */}
+            <View style={styles.titleRow}>
+              <Text style={styles.title}>{item.title}</Text>
+              <View style={styles.priceWrapper}>
+                <Text style={styles.price}>$ {item.price}</Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
-                <MaterialCommunityIcons
-                  name="truck-delivery-outline"
-                  size={20}
+            </View>
+
+            {/* Ratings and quantity row */}
+            <View
+              style={{
+                ...styles.ratingRow,
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={styles.rating}>
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <Ionicons key={index} name="star" size={24} color="gold" />
+                ))}
+                <Text style={styles.ratingText}>(4.9)</Text>
+              </View>
+              <View style={styles.rating}>
+                <TouchableOpacity onPress={handleIncrementCount}>
+                  <SimpleLineIcons name="plus" size={20} />
+                </TouchableOpacity>
+                <Text style={styles.ratingText}>{count}</Text>
+                <TouchableOpacity onPress={handleDecrementCount}>
+                  <SimpleLineIcons name="minus" size={20} />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* Description */}
+            <View style={styles.descriptionWrapper}>
+              <Text style={styles.description}>Description</Text>
+              <Text style={styles.descriptionText}>{item.description}</Text>
+            </View>
+
+            {/* Location and delivery */}
+            <View style={{ marginBottom: SIZES.small }}>
+              <View style={styles.location}>
+                <View style={{ flexDirection: "row" }}>
+                  <Ionicons name="location-outline" size={20} />
+                  <Text style={{ paddingHorizontal: 5 }}>Dhaka</Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <MaterialCommunityIcons
+                    name="truck-delivery-outline"
+                    size={20}
+                  />
+                  <Text style={{ paddingHorizontal: 5 }}>Free Delivery</Text>
+                </View>
+              </View>
+            </View>
+
+            {/* Buy now and add to cart buttons */}
+            <View style={styles.cartRow}>
+              <TouchableOpacity style={styles.cartBtn} onPress={() => {}}>
+                <Text style={styles.cartTitle}>Buy Now</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.addToCart} onPress={() => {}}>
+                <Fontisto
+                  name="shopping-bag"
+                  size={22}
+                  color={COLORS.lightWhite}
                 />
-                <Text style={{ paddingHorizontal: 5 }}>Free Delivery</Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
-
-          {/* Buy now and add to cart buttons */}
-          <View style={styles.cartRow}>
-            <TouchableOpacity style={styles.cartBtn} onPress={() => {}}>
-              <Text style={styles.cartTitle}>Buy Now</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.addToCart} onPress={() => {}}>
-              <Fontisto
-                name="shopping-bag"
-                size={22}
-                color={COLORS.lightWhite}
-              />
-            </TouchableOpacity>
-          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

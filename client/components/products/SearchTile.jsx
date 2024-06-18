@@ -4,7 +4,6 @@ import styles from "@/styles/Products/searchTile.style";
 import { router } from "expo-router";
 
 const SearchTile = ({ item }) => {
-  console.log(item);
   return (
     <View>
       <TouchableOpacity

@@ -13,7 +13,21 @@ const ProductsRow = () => {
       {loading ? (
         <ActivityIndicator size={SIZES.xxLarge} color={COLORS.primary} />
       ) : error ? (
-        <Text>Something went wrong</Text>
+        <Text
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: SIZES.large,
+            fontFamily: "Poppins-SemiBold",
+            textAlign: "center",
+            marginTop: 20,
+            color: COLORS.gray,
+          }}
+        >
+          Something went wrong
+        </Text>
       ) : (
         <FlatList
           data={data}

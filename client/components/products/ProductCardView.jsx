@@ -14,7 +14,7 @@ const ProductCardView = ({ item }) => {
     >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={item.image.url} style={styles.image} />
+          <Image source={{ uri: item.image.url }} style={styles.image} />
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>

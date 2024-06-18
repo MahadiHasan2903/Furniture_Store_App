@@ -31,7 +31,8 @@ export default function RootLayout() {
 
   const screenNames = [
     "(tabs)",
-    "(auth)",
+    "(auth)/sign-in",
+    "(auth)/sign-up",
     "(routes)/cart/index",
     "(routes)/new-arrivals/index",
     "(routes)/product-details/[productId]",
