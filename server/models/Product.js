@@ -12,6 +12,11 @@ const productSchema = new mongoose.Schema(
       required: [true, "Please enter your product supplier name"],
       trim: true,
     },
+    productLocation: {
+      type: String,
+      required: [true, "Please enter your product location"],
+      trim: true,
+    },
     price: {
       type: Number,
       required: [true, "Please enter your product price"],

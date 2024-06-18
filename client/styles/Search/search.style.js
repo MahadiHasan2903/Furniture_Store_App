@@ -27,15 +27,21 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     paddingHorizontal: SIZES.small,
-    borderColor: "transparent",
   },
   searchBtn: {
     width: 50,
-    height: "100%",
+    height: 50,
     borderRadius: SIZES.medium,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLORS.primary,
+  },
+  searchImage: {
+    resizeMode: "contain",
+    width: SIZES.width - 100,
+    height: SIZES.height - 300,
+    opacity: 0.9,
+    marginLeft: SIZES.small,
   },
 });
 

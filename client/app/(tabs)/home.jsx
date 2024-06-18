@@ -1,8 +1,5 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Welcome, Carousel, Heading } from "@/components/home";
@@ -31,7 +28,7 @@ const Home = () => {
           </View>
         </View>
       </View>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Welcome />
         <Carousel />
         <Heading />

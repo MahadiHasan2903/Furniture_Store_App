@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Products/productDetails.style";
 import {
   Fontisto,
@@ -10,9 +10,25 @@ import {
 import { router, useLocalSearchParams } from "expo-router";
 import { COLORS, SIZES } from "@/constants/index";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import axios from "axios";
+import { BASE_URL } from "@/config/constants";
 const ProductDetails = () => {
   const item = useLocalSearchParams();
+  const [product, setProduct] = useState({});
+
+  // Function to fetch product details
+  const fetchProductDetails = async () => {
+    const response = await axios.get(
+      `${BASE_URL}/get-product/${item.productId}`
+    );
+
+    setProduct(response.data.product);
+  };
+
+  //Using this for  fetching the image of the product
+  useEffect(() => {
+    fetchProductDetails();
+  }, []);
 
   console.log("Item:", item);
   const [count, setCount] = useState(1);
@@ -41,12 +57,7 @@ const ProductDetails = () => {
         </View>
 
         {/* Image section */}
-        <Image
-          source={{
-            uri: "https://cdn.confident-group.com/wp-content/uploads/2018/04/23150515/COVER-10-Furniture-Essentials-For-Every-Home.jpg",
-          }}
-          style={styles.image}
-        />
+        <Image source={product?.image?.url} style={styles.image} />
 
         {/* Product details */}
         <View style={styles.details}>

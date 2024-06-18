@@ -14,12 +14,7 @@ const ProductCardView = ({ item }) => {
     >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image
-            source={{
-              uri: "https://www.constructionplacements.com/wp-content/uploads/2021/08/10-Best-Essential-Living-Room-Furniture-items-for-your-sweet-home.jpg",
-            }}
-            style={styles.image}
-          />
+          <Image source={item.image.url} style={styles.image} />
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>
