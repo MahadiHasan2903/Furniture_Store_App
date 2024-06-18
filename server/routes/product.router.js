@@ -39,7 +39,7 @@ productRouter.get(
   isAuthenticated,
   getSingleProductController
 );
-productRouter.get("/get-products", isAuthenticated, getAllProductsController);
+productRouter.get("/get-products", getAllProductsController);
 productRouter.get(
   "/search-product/:key",
   isAuthenticated,

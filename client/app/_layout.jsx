@@ -34,6 +34,8 @@ export default function RootLayout() {
     "(auth)/sign-in",
     "(auth)/sign-up",
     "(routes)/cart/index",
+    "(routes)/orders/index",
+    "(routes)/favorites/index",
     "(routes)/new-arrivals/index",
     "(routes)/product-details/[productId]",
     "index",
