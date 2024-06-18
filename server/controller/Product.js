@@ -4,14 +4,14 @@ const cloudinary = require("cloudinary").v2;
 // Create a new product
 const createProductController = async (req, res) => {
   try {
-    const myCloud = await cloudinary.uploader.upload(req.body.image, {
-      folder: "furniture_images",
-    });
+    // const myCloud = await cloudinary.uploader.upload(req.body.image, {
+    //   folder: "furniture_images",
+    // });
 
-    req.body.image = {
-      public_id: myCloud.public_id,
-      url: myCloud.url,
-    };
+    // req.body.image = {
+    //   public_id: myCloud.public_id,
+    //   url: myCloud.url,
+    // };
 
     const product = await Product.create(req.body);
 

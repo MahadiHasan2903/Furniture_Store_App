@@ -5,9 +5,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { COLORS, SIZES } from "@/constants/index";
 
-const ProductCardView = () => {
+const ProductCardView = ({ item }) => {
   return (
-    <TouchableOpacity onPress={() => router.push("/product-details")}>
+    <TouchableOpacity
+      onPress={() =>
+        router.push({ pathname: `/product-details/${item._id}`, params: item })
+      }
+    >
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
@@ -19,13 +23,13 @@ const ProductCardView = () => {
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>
-            Product
+            {item.title}
           </Text>
           <Text style={styles.supplier} numberOfLines={1}>
-            Product
+            {item.supplier}
           </Text>
           <Text style={styles.price} numberOfLines={1}>
-            $321
+            $ {item.price}
           </Text>
         </View>
 

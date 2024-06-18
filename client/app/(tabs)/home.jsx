@@ -1,11 +1,8 @@
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import {
   SafeAreaView,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { Ionicons, Fontisto } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Welcome, Carousel, Heading } from "@/components/home";
@@ -14,15 +11,8 @@ import styles from "@/styles/Home/home.style";
 import { ProductsRow } from "@/components/products";
 
 const Home = () => {
-  const insets = useSafeAreaInsets();
-
   return (
-    <SafeAreaView
-      style={{
-        paddingTop: insets.top,
-        flex: 1,
-      }}
-    >
+    <SafeAreaView>
       <View style={styles.appBarWrapper}>
         <View style={styles.appBar}>
           <Ionicons name="location-outline" size={24} />

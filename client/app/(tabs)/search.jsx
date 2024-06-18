@@ -1,22 +1,17 @@
 import React from "react";
-import { SafeAreaView, TextInput, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { TextInput, TouchableOpacity, View } from "react-native";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import styles from "@/styles/Search/search.style";
 import { COLORS, SIZES } from "@/constants/index";
 
 const Search = () => {
-  const insets = useSafeAreaInsets();
-
   return (
-    <SafeAreaView
-      style={{
-        paddingTop: insets.top,
-        flex: 1,
-        backgroundColor: COLORS.background,
-      }}
-    >
+    <SafeAreaView>
       <View style={styles.searchContainer}>
         <TouchableOpacity>
           <Ionicons name="camera-outline" size={24} style={styles.searchIcon} />

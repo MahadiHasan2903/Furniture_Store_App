@@ -33,7 +33,8 @@ export default function RootLayout() {
     "(tabs)",
     "(auth)",
     "(routes)/cart/index",
-    "(routes)/product-details/index",
+    "(routes)/new-arrivals/index",
+    "(routes)/product-details/[productId]",
     "index",
   ];
 

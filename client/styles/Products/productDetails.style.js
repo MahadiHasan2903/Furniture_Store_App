@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     width: SIZES.width,
     borderTopLeftRadius: SIZES.medium,
     borderTopRightRadius: SIZES.medium,
+    paddingRight: 10,
   },
   titleRow: {
     marginHorizontal: 20,
@@ -104,6 +105,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: SIZES.width,
+    paddingRight: 12,
   },
   cartBtn: {
     width: SIZES.width * 0.7,

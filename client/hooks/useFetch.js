@@ -12,8 +12,7 @@ const useFetch = () => {
     setLoading(true);
     try {
       const response = await axios.get(`${BASE_URL}/get-products`);
-      console.log(response.data);
-      setData(response.data);
+      setData(response.data.products);
     } catch (error) {
       setError(true);
       console.log("Error while fetching:", error);

@@ -1,10 +1,4 @@
-import {
-  Image,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import styles from "@/styles/Products/productDetails.style";
 import {
@@ -13,10 +7,14 @@ import {
   MaterialCommunityIcons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { COLORS, SIZES } from "@/constants/index";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProductDetails = () => {
+  const item = useLocalSearchParams();
+
+  console.log("Item:", item);
   const [count, setCount] = useState(1);
 
   const handleIncrementCount = () => {
@@ -54,9 +52,9 @@ const ProductDetails = () => {
         <View style={styles.details}>
           {/* Title and price row */}
           <View style={styles.titleRow}>
-            <Text style={styles.title}>Product</Text>
+            <Text style={styles.title}>{item.title}</Text>
             <View style={styles.priceWrapper}>
-              <Text style={styles.price}>$ 660.88</Text>
+              <Text style={styles.price}>$ {item.price}</Text>
             </View>
           </View>
 
@@ -88,13 +86,7 @@ const ProductDetails = () => {
           {/* Description */}
           <View style={styles.descriptionWrapper}>
             <Text style={styles.description}>Description</Text>
-            <Text style={styles.descriptionText}>
-              Modern minimalist living room featuring sleek lines, neutral
-              tones, and curated art pieces. Step into a modern minimalist
-              living room, adorned with sleek lines and soothing neutral tones.
-              Curated art pieces add personality and charm, creating a serene
-              yet stylish interior design perfect for relaxation and gatherings.
-            </Text>
+            <Text style={styles.descriptionText}>{item.description}</Text>
           </View>
 
           {/* Location and delivery */}
