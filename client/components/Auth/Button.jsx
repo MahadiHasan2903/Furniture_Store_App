@@ -1,11 +1,24 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { COLORS, SIZES } from "@/constants/index";
 
-const Button = ({ title, onPress }) => {
+const Button = ({ title, loading, isValid, onPress }) => {
   return (
-    <TouchableOpacity style={styles.btnStyle} onPress={onPress}>
-      <Text style={styles.btnText}>{title}</Text>
+    <TouchableOpacity
+      style={styles.btnStyle(!isValid ? COLORS.gray : COLORS.primary)}
+      onPress={onPress}
+    >
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Text style={styles.btnText}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 };
@@ -18,13 +31,13 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: 18,
   },
-  btnStyle: {
+  btnStyle: (backgroundColor) => ({
     height: 50,
     width: "100%",
     marginVertical: 20,
-    backgroundColor: COLORS.primary,
+    backgroundColor: backgroundColor,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 12,
-  },
+  }),
 });

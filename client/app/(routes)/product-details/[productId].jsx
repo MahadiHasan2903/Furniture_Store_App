@@ -14,13 +14,12 @@ import axios from "axios";
 import { BASE_URL } from "@/config/constants";
 const ProductDetails = () => {
   const item = useLocalSearchParams();
+
   const [product, setProduct] = useState({});
 
   // Function to fetch product details
   const fetchProductDetails = async () => {
-    const response = await axios.get(
-      `${BASE_URL}/get-product/${item.productId}`
-    );
+    const response = await axios.get(`${BASE_URL}/get-product/${item._id}`);
 
     setProduct(response.data.product);
   };
@@ -57,7 +56,7 @@ const ProductDetails = () => {
           </View>
 
           {/* Image section */}
-          <Image source={{ uri: product?.image?.url }} style={styles.image} />
+          <Image source={{ uri: product?.image }} style={styles.image} />
 
           {/* Product details */}
           <View style={styles.details}>

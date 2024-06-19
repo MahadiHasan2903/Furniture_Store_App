@@ -16,7 +16,7 @@ const SearchTile = ({ item }) => {
         }
       >
         <View style={styles.image}>
-          <Image source={{ uri: item.image.url }} style={styles.productImg} />
+          <Image source={{ uri: item.image }} style={styles.productImg} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.productTitle}>{item.title}</Text>

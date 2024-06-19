@@ -3,7 +3,7 @@ import { COLORS, SIZES } from "@/constants/index";
 
 const styles = StyleSheet.create({
   cover: {
-    height: SIZES.height / 2.4,
+    height: SIZES.height / 3,
     width: SIZES.width - 60,
     resizeMode: "contain",
     marginBottom: SIZES.xxLarge,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.xSmall,
   },
 
-  registrationLink: {
+  loginLink: {
     textAlign: "center",
     color: COLORS.gray,
   },

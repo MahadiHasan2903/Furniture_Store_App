@@ -10,27 +10,35 @@ import {
   MaterialCommunityIcons,
   SimpleLineIcons,
 } from "@expo/vector-icons";
+import { useAuth } from "@/config/AuthContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Profile = () => {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const { accessToken } = useAuth();
 
   //Function to handle logout
-  const handleLogout = () => {
-    console.log("Logout button pressed");
-    Alert.alert(
-      "Logout",
-      "Are you sure you want to logout?",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Pressed cancel"),
-          style: "cancel",
-        },
-        { text: "Confirm", onPress: () => console.log("Pressed confirm") },
-      ],
-      { defaultIndex: 1 },
-      { cancelable: false }
-    );
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem("userData");
+      await AsyncStorage.removeItem("accessToken");
+      // Clear context user and token
+      updateUserAndToken(null, null);
+      Alert.alert(
+        "Logout Successful",
+        "You have been logged out successfully.",
+        [{ text: "OK", onPress: () => {} }],
+        { cancelable: false }
+      );
+      router.push("/sign-in");
+    } catch (error) {
+      console.error("Error logging out:", error);
+      Alert.alert(
+        "Logout Failed",
+        "An error occurred while logging out. Please try again.",
+        [{ text: "OK", onPress: () => {} }],
+        { cancelable: false }
+      );
+    }
   };
 
   //Function to handle delete user account
@@ -91,11 +99,9 @@ const Profile = () => {
               style={styles.profile}
             />
             <Text style={styles.name}>
-              {userLoggedIn
-                ? "Mahadi Hasan"
-                : "Please logged into your account"}
+              {accessToken ? "Mahadi Hasan" : "Please logged into your account"}
             </Text>
-            {!userLoggedIn ? (
+            {!accessToken ? (
               <TouchableOpacity onPress={() => router.push("(auth)/sign-in")}>
                 <View style={styles.loginBtn}>
                   <Text style={styles.menuText}>Login</Text>
@@ -107,7 +113,7 @@ const Profile = () => {
               </View>
             )}
 
-            {userLoggedIn && (
+            {accessToken && (
               <View style={styles.menuWrapper}>
                 <TouchableOpacity
                   onPress={() => router.push("(routes)/favorites")}

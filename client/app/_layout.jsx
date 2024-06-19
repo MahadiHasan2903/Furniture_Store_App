@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import "react-native-reanimated";
+import { AuthProvider } from "../config/AuthContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -42,10 +43,16 @@ export default function RootLayout() {
   ];
 
   return (
-    <Stack>
-      {screenNames.map((name) => (
-        <Stack.Screen key={name} name={name} options={{ headerShown: false }} />
-      ))}
-    </Stack>
+    <AuthProvider>
+      <Stack>
+        {screenNames.map((name) => (
+          <Stack.Screen
+            key={name}
+            name={name}
+            options={{ headerShown: false }}
+          />
+        ))}
+      </Stack>
+    </AuthProvider>
   );
 }
