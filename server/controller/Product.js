@@ -1,18 +1,8 @@
 const Product = require("../models/Product");
-const cloudinary = require("cloudinary").v2;
 
 // Create a new product
 const createProductController = async (req, res) => {
   try {
-    const myCloud = await cloudinary.uploader.upload(req.body.image, {
-      folder: "furniture_images",
-    });
-
-    req.body.image = {
-      public_id: myCloud.public_id,
-      url: myCloud.url,
-    };
-
     const product = await Product.create(req.body);
 
     res.status(201).json({
@@ -41,19 +31,6 @@ const updateProductController = async (req, res) => {
         success: false,
         message: "Product not found",
       });
-    }
-
-    if (req.body.image) {
-      await cloudinary.uploader.destroy(product.image.public_id);
-
-      const myCloud = await cloudinary.uploader.upload(req.body.image, {
-        folder: "furniture_images",
-      });
-
-      req.body.image = {
-        public_id: myCloud.public_id,
-        url: myCloud.url,
-      };
     }
 
     product = await Product.findByIdAndUpdate(id, req.body, {
@@ -86,7 +63,6 @@ const deleteProductController = async (req, res) => {
       });
     }
 
-    await cloudinary.uploader.destroy(product.image.public_id);
     await Product.findByIdAndDelete(req.params.id);
 
     res.status(200).json({
@@ -106,6 +82,7 @@ const deleteProductController = async (req, res) => {
 const getSingleProductController = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
+
     if (!product) {
       return res.status(404).json({
         success: false,

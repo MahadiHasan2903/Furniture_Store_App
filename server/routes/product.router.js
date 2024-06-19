@@ -34,16 +34,8 @@ productRouter.delete(
   authorizeRoles("admin"),
   deleteProductController
 );
-productRouter.get(
-  "/get-product/:id",
-  isAuthenticated,
-  getSingleProductController
-);
+productRouter.get("/get-product/:id", getSingleProductController);
 productRouter.get("/get-products", getAllProductsController);
-productRouter.get(
-  "/search-product/:key",
-  isAuthenticated,
-  searchProductController
-);
+productRouter.get("/search-product/:key", searchProductController);
 
 module.exports = productRouter;

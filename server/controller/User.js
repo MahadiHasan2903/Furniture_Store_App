@@ -52,7 +52,8 @@ const getSingleUserController = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findById(id);
+    // Exclude the 'password' field from the returned user object
+    const user = await User.findById(id).select("-password");
 
     if (!user) {
       return res

@@ -23,14 +23,9 @@ const productSchema = new mongoose.Schema(
       trim: true,
     },
     image: {
-      public_id: {
-        type: String,
-        required: [false, "Please provide the public ID of the image"],
-      },
-      url: {
-        type: String,
-        required: [false, "Please provide the URL of the image"],
-      },
+      type: String,
+      required: [true, "Please enter your product image"],
+      trim: true,
     },
     description: {
       type: String,

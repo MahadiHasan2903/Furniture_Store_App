@@ -72,6 +72,7 @@ const loginController = async (req, res) => {
       email: user.email,
       username: user.username,
       role: user.role,
+      location: user.location,
     };
     res.status(200).json({
       success: true,

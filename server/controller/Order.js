@@ -3,7 +3,6 @@ const Order = require("../models/Order");
 // Controller to get all orders of a specific user by userId
 const getUsersOrderController = async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId);
   try {
     const userOrders = await Order.find({ userId })
       .populate({
